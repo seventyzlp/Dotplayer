@@ -5,9 +5,9 @@
 #include <QDir> //文件目录操作
 
 
-//#include <QMediaPlayer> //播放
-//#include <QAudioOutput> //输出
-#include <QtMultimedia>
+#include <QMediaPlayer> //播放
+#include <QAudioOutput> //输出
+#include <QVideoWidget>
 
 //QStringList MediaList; //全局变量播放列表
 
@@ -21,11 +21,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     mediaplayer = new QMediaPlayer(this);
     audiooutput = new QAudioOutput(this);
-    //videooutput = new QVideoOutput(this);
+    videowidget = new QVideoWidget(ui->LB_playwidget);//这里把父对象指定给LB窗口
 
     mediaplayer->setAudioOutput(audiooutput); //把视频播放链接到音频输出
-   //mediaplayer->setSource(QUrl::fromLocalFile("D:\\CloudMusic\\周政 - 爷们儿要战斗（周政 remix）.mp3"));
-   // mediaplayer->play();
+    mediaplayer->setVideoOutput(videowidget); //链接视频输出
+    videowidget->resize(ui->LB_playwidget->size());//设置窗口大小
 
 
     //获取当前媒体长度，自定义信号
@@ -64,7 +64,7 @@ void MainWindow::on_B_AddFile_clicked() //添加播放列表按键
     //qInfo() << path; //应用程序输出内容
     // 获取path路径中的mp3、wav、flac文件
     QDir dir(path);
-    MediaList = dir.entryList(QStringList()<<"*.mp3"<<"*.wav"<<"*.flac"); //设置过滤选项
+    MediaList = dir.entryList(QStringList()<<"*.mp3"<<"*.wav"<<"*.flac"<<"*.mkv"<<"*.mp4"); //设置过滤选项
     ui->L_MediaList->addItems(MediaList); //添加到播放列表list中展示
 
     for (auto file: MediaList){
@@ -140,7 +140,7 @@ void MainWindow::on_B_stop_clicked()
 void MainWindow::on_pushButton_5_clicked()//添加播放列表
 {
     MediaList.append(QFileDialog::getOpenFileNames(this,"选择要添加到播放列表的文件","D:\\CloudMusic","allfiles(*.*)")); //直接获取全部路径了
-    playlist.append(QUrl::fromLocalFile(QFileDialog::getOpenFileNames(this,"选择要添加到播放列表的文件","D:\\CloudMusic","allfiles(*.*)")));
+    //playlist.append(QUrl::fromLocalFile(QFileDialog::getOpenFileNames(this,"选择要添加到播放列表的文件","D:\\CloudMusic","allfiles(*.*)")));
     ui->L_MediaList->addItems(MediaList);
 }
 

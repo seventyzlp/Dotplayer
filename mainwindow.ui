@@ -377,7 +377,7 @@
      <string>打开</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="LB_playwidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -387,7 +387,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
    </widget>
   </widget>

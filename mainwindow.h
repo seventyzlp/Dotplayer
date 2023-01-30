@@ -4,6 +4,7 @@
 #include "qmediaplayer.h"
 #include <QMainWindow>
 #include <QUrl>
+#include <QVideoWidget>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -36,6 +37,8 @@ private:
     QList<QUrl> playlist; //存储媒体路径
     QAudioOutput* audiooutput;
     QMediaPlayer* mediaplayer;
+    QVideoWidget* videowidget;
     QStringList MediaList;
+
 };
 #endif // MAINWINDOW_H
