@@ -32,6 +32,8 @@ private slots:
 
       void on_pushButton_5_clicked();
 
+      void on_pushButton_11_clicked();
+
 private:
     Ui::MainWindow *ui;
     QList<QUrl> playlist; //存储媒体路径
