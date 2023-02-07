@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    setWindowTitle("Dotplayer 0.1");//窗口名称
+    setWindowTitle("Dotplayer 0.95");//窗口名称
 
     mediaplayer = new QMediaPlayer(this);
     audiooutput = new QAudioOutput(this);
@@ -155,6 +155,11 @@ void MainWindow::on_pushButton_5_clicked()//添加文件到播放列表，现在
 
 void MainWindow::on_pushButton_11_clicked() // 删除播放列表中的选项
 {
+    int row = ui->L_MediaList->currentRow(); //获取选中的行
+    MediaList.removeAt(row);
+    playlist.removeAt(row);
+    ui->L_MediaList->clear();
+    ui->L_MediaList->addItems(MediaList);
 
 }
 
