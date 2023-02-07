@@ -70,7 +70,6 @@ void MainWindow::on_B_AddFile_clicked() //添加播放列表按键
 
     for (auto file: MediaList){
         playlist.append(QUrl::fromLocalFile(path+"/"+file)); //获取完整路径保存在playlist中
-        //qInfo()<<playlist;
     }
 
     ui->L_MediaList->setCurrentRow(0);//默认选中第一行，下标从0开始
@@ -138,18 +137,19 @@ void MainWindow::on_B_stop_clicked()
 
 
 
-void MainWindow::on_pushButton_5_clicked()//添加文件到播放列表
+void MainWindow::on_pushButton_5_clicked()//添加文件到播放列表，现在支持多文件选择添加了
 {
     auto add_FilePath = QFileDialog::getOpenFileNames(this,"选择要添加到播放列表的文件","D:\\CloudMusic","allfiles(*.*)"); //直接获取全部路径了
 
-
-    auto fi = QFileInfo(add_FilePath[0]);
+    for (int i = 0;i < add_FilePath.length();i++){
+    auto fi = QFileInfo(add_FilePath[i]);
     QString add_FileName = fi.fileName();
 
-    playlist.append(QUrl::fromLocalFile(add_FilePath[0]));
-    MediaList.append(add_FileName);
-    ui->L_MediaList->addItems(MediaList); //MediaList 是放文件名的 playlist 是放文件路径的
-
+    playlist.append(QUrl::fromLocalFile(add_FilePath[i]));
+    MediaList.append(add_FileName); //MediaList 是放文件名的 playlist 是放文件路径的
+    qInfo()<<MediaList;
+    }
+    ui->L_MediaList->addItems(MediaList);
 }
 
 
