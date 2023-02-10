@@ -110,7 +110,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
@@ -245,6 +245,16 @@
        <attribute name="title">
         <string>此电脑</string>
        </attribute>
+       <widget class="QListWidget" name="L_UserFile">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>451</width>
+          <height>491</height>
+         </rect>
+        </property>
+       </widget>
       </widget>
      </widget>
     </widget>

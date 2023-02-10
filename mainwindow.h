@@ -34,6 +34,8 @@ private slots:
 
       void on_pushButton_11_clicked();
 
+      void on_tabWidget_2_tabBarClicked(int index);
+
 private:
     Ui::MainWindow *ui;
     QList<QUrl> playlist; //存储媒体路径
@@ -41,6 +43,7 @@ private:
     QMediaPlayer* mediaplayer;
     QVideoWidget* videowidget;
     QStringList MediaList;
+    bool flag = true;
 
 };
 #endif // MAINWINDOW_H

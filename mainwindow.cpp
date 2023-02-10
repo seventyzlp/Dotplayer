@@ -163,3 +163,31 @@ void MainWindow::on_pushButton_11_clicked() // 删除播放列表中的选项
 
 }
 
+
+void MainWindow::on_tabWidget_2_tabBarClicked(int index) //选中这个框框之后读取电脑音乐文件夹中的东西
+{
+    if(index == 1){ //选中了此电脑界面
+        QString user_path = "D:\\CloudMusic";
+        QDir dir(user_path);//这边的播放还要修改前面的东西，因为
+        QStringList User_Medialist = dir.entryList(QStringList()<<"*.mp3"<<"*.wav"<<"*.flac"<<"*.mkv"<<"*.mp4"); //设置过滤选项
+
+        playlist.clear();
+
+        for (auto file:User_Medialist){
+            playlist.append(QUrl::fromLocalFile(user_path+"/"+file)); //获取完整路径保存在playlist中
+        }
+        qInfo()<<playlist;
+        if(User_Medialist.length()!=0){
+            ui->L_UserFile->addItems(User_Medialist);
+        }
+        else if(flag){
+            ui->L_UserFile->addItem("在C:/Users路径下找不到可以播放的媒体");
+            flag = false;
+        }
+    }
+    else{
+        ui->L_UserFile->clear();
+        flag = true;
+    }
+}
+
