@@ -28,7 +28,6 @@ MainWindow::MainWindow(QWidget *parent)
     mediaplayer->setVideoOutput(videowidget); //链接视频输出
     videowidget->resize(ui->LB_playwidget->size());//设置窗口大小
 
-
     //获取当前媒体长度，自定义信号
     connect(mediaplayer,&QMediaPlayer::durationChanged,this,[=](qint64 duration){ //返回值为毫秒
         ui->LB_total->setText(QString("%1:%2").arg(duration/60000,2,10,QChar('0')).arg(duration/1000%60,2,10,QChar('0')));//格式化字符串
@@ -189,5 +188,126 @@ void MainWindow::on_tabWidget_2_tabBarClicked(int index) //选中这个框框之
         ui->L_UserFile->clear();
         flag = true;
     }
+}
+
+
+void MainWindow::on_B_Top_clicked() //把选中播放列表的播放对象置顶
+{
+    int target = ui->L_MediaList->currentRow();
+    QString target_item = MediaList[target];
+    QUrl target_url = playlist[target];
+
+    if(target>0){
+
+        for(int i=target;i>0;i--){
+            MediaList[i]=MediaList[i-1]; //后置
+            playlist[i]=playlist[i-1];
+        }
+
+        MediaList[0] = target_item;
+        playlist[0] = target_url;
+
+        ui->L_MediaList->clear();
+        ui->L_MediaList->addItems(MediaList);
+        ui->L_MediaList->setCurrentRow(0);
+
+    }
+}
+
+
+void MainWindow::on_B_Bottom_clicked() //把选中播放列表的播放对象置底
+{
+    int target = ui->L_MediaList->currentRow();
+    QString target_item = MediaList[target];
+    QUrl target_url = playlist[target];
+
+    if(target<MediaList.length()-1){
+
+        for(int i=target;i<MediaList.length()-1;i++){
+
+            MediaList[i]=MediaList[i+1]; //前置
+            playlist[i]=playlist[i+1];
+        }
+
+        MediaList[MediaList.length()-1] = target_item;
+        playlist[MediaList.length()-1] = target_url;
+
+        ui->L_MediaList->clear();
+        ui->L_MediaList->addItems(MediaList); //这边之后可以用函数来优化一下
+        ui->L_MediaList->setCurrentRow(MediaList.length()-1);
+
+    }
+}
+
+
+void MainWindow::on_B_Up_clicked() //把选中的播放对象向上一格
+{
+    //这边就直接交换位置了
+    int target = ui->L_MediaList->currentRow();
+    QString target_item = MediaList[target];
+    QUrl target_url = playlist[target];
+
+    if(target>0){
+
+        playlist[target]=playlist[target-1];
+        playlist[target-1]=target_url;
+
+        MediaList[target]=MediaList[target-1];
+        MediaList[target-1]=target_item;
+
+        ui->L_MediaList->clear();
+        ui->L_MediaList->addItems(MediaList);
+        ui->L_MediaList->setCurrentRow(target-1);
+
+    }
+}
+
+
+void MainWindow::on_B_Down_clicked() //把选中的播放对象向下一格
+{
+    int target = ui->L_MediaList->currentRow();
+    QString target_item = MediaList[target];
+    QUrl target_url = playlist[target];
+
+    if(target<MediaList.length()-1){
+
+        playlist[target]=playlist[target+1];
+        playlist[target+1]=target_url;
+
+        MediaList[target]=MediaList[target+1];
+        MediaList[target+1]=target_item;
+
+        ui->L_MediaList->clear();
+        ui->L_MediaList->addItems(MediaList);
+        ui->L_MediaList->setCurrentRow(target+1);
+
+    }
+
+}
+
+
+void MainWindow::on_pushButton_12_clicked() //对播放列表内容按照码值大小进行排序（没啥用草）
+{
+    QString t_name;
+    QUrl t_url;
+
+    for (int i=0;i<MediaList.length()-1;++i){ //冒泡
+
+        for(int j=MediaList.length()-1;j>i;--j){
+
+            if(MediaList[j]<MediaList[j-1]){
+
+                t_name=MediaList[j];
+                MediaList[j]=MediaList[j-1];
+                MediaList[j-1]=t_name;
+
+                t_url=playlist[j];
+                playlist[j]=playlist[j-1];
+                playlist[j-1]=t_url;
+            }
+        }
+    }
+    ui->L_MediaList->clear();
+    ui->L_MediaList->addItems(MediaList);
 }
 

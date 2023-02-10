@@ -110,7 +110,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
@@ -126,7 +126,7 @@
          </rect>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_6">
+       <widget class="QPushButton" name="B_Top">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -136,10 +136,10 @@
          </rect>
         </property>
         <property name="text">
-         <string/>
+         <string>顶</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_7">
+       <widget class="QPushButton" name="B_Up">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -149,10 +149,10 @@
          </rect>
         </property>
         <property name="text">
-         <string/>
+         <string>上</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_8">
+       <widget class="QPushButton" name="B_Down">
         <property name="geometry">
          <rect>
           <x>40</x>
@@ -162,10 +162,10 @@
          </rect>
         </property>
         <property name="text">
-         <string/>
+         <string>下</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_9">
+       <widget class="QPushButton" name="B_Bottom">
         <property name="geometry">
          <rect>
           <x>60</x>
@@ -175,7 +175,7 @@
          </rect>
         </property>
         <property name="text">
-         <string/>
+         <string>底</string>
         </property>
        </widget>
        <widget class="QPushButton" name="B_AddFile">

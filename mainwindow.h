@@ -36,6 +36,16 @@ private slots:
 
       void on_tabWidget_2_tabBarClicked(int index);
 
+      void on_B_Top_clicked();
+
+      void on_B_Bottom_clicked();
+
+      void on_B_Up_clicked();
+
+      void on_B_Down_clicked();
+
+      void on_pushButton_12_clicked();
+
 private:
     Ui::MainWindow *ui;
     QList<QUrl> playlist; //存储媒体路径
