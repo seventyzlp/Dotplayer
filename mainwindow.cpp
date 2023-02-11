@@ -76,7 +76,6 @@ void MainWindow::on_B_AddFile_clicked() //添加播放列表按键
 
 }
 
-
 void MainWindow::on_B_play_clicked()
 {
     if(playlist.empty()){
@@ -110,7 +109,6 @@ void MainWindow::on_B_play_clicked()
     }
 }
 
-
 void MainWindow::on_B_prev_clicked() //播放上一个文件
 {
     int row = ui->L_MediaList->currentRow();
@@ -124,7 +122,6 @@ void MainWindow::on_B_prev_clicked() //播放上一个文件
     mediaplayer->setSource(playlist[row]);
 }
 
-
 void MainWindow::on_B_next_clicked()  //播放下一个文件
 {
     int row = ui->L_MediaList->currentRow();
@@ -134,12 +131,10 @@ void MainWindow::on_B_next_clicked()  //播放下一个文件
     //mediaplayer->play();
 }
 
-
 void MainWindow::on_B_stop_clicked()
 {
     mediaplayer->stop();
 }
-
 
 void MainWindow::on_pushButton_5_clicked()//添加文件到播放列表，现在支持多文件选择添加了
 {
@@ -155,7 +150,6 @@ void MainWindow::on_pushButton_5_clicked()//添加文件到播放列表，现在
     ui->L_MediaList->addItems(MediaList);
 }
 
-
 void MainWindow::on_pushButton_11_clicked() // 删除播放列表中的选项
 {
     int row = ui->L_MediaList->currentRow(); //获取选中的行
@@ -165,7 +159,6 @@ void MainWindow::on_pushButton_11_clicked() // 删除播放列表中的选项
     ui->L_MediaList->addItems(MediaList);
 
 }
-
 
 void MainWindow::on_tabWidget_2_tabBarClicked(int index) //选中这个框框之后读取电脑音乐文件夹中的东西
 {
@@ -194,7 +187,6 @@ void MainWindow::on_tabWidget_2_tabBarClicked(int index) //选中这个框框之
     }
 }
 
-
 void MainWindow::on_B_Top_clicked() //把选中播放列表的播放对象置顶
 {
     int target = ui->L_MediaList->currentRow();
@@ -217,7 +209,6 @@ void MainWindow::on_B_Top_clicked() //把选中播放列表的播放对象置顶
 
     }
 }
-
 
 void MainWindow::on_B_Bottom_clicked() //把选中播放列表的播放对象置底
 {
@@ -243,7 +234,6 @@ void MainWindow::on_B_Bottom_clicked() //把选中播放列表的播放对象置
     }
 }
 
-
 void MainWindow::on_B_Up_clicked() //把选中的播放对象向上一格
 {
     //这边就直接交换位置了
@@ -266,7 +256,6 @@ void MainWindow::on_B_Up_clicked() //把选中的播放对象向上一格
     }
 }
 
-
 void MainWindow::on_B_Down_clicked() //把选中的播放对象向下一格
 {
     int target = ui->L_MediaList->currentRow();
@@ -288,7 +277,6 @@ void MainWindow::on_B_Down_clicked() //把选中的播放对象向下一格
     }
 
 }
-
 
 void MainWindow::on_pushButton_12_clicked() //对播放列表内容按照码值大小进行排序（没啥用草）
 {
@@ -315,7 +303,6 @@ void MainWindow::on_pushButton_12_clicked() //对播放列表内容按照码值�
     ui->L_MediaList->addItems(MediaList);
 }
 
-
 void MainWindow::on_tabWidget_tabBarClicked(int index)// 点击到浏览器界面 获取云端的播放列表
 {
     if(index == 0){ //判断点击浏览器
@@ -336,21 +323,34 @@ void MainWindow::on_tabWidget_tabBarClicked(int index)// 点击到浏览器界�
     }
 }
 
-
 void MainWindow::on_B_HighSpeed_clicked() //设置二倍速播放
 {
     mediaplayer->setPlaybackRate(2);
 }
-
 
 void MainWindow::on_B_LowSpedd_clicked()  //设置半速播放
 {
     mediaplayer->setPlaybackRate(0.5);
 }
 
-
 void MainWindow::on_B_NSpeed_clicked()  //设置常速播放
 {
     mediaplayer->setPlaybackRate(1);
+}
+
+void MainWindow::on_B_Color_clicked() //修改背景图片
+{
+    if(!style_set){
+
+        this->setStyleSheet("background-image: url(:/BG.png);");
+        style_set = !style_set;
+
+    }
+    else{
+
+        this->setStyleSheet("");
+        style_set = !style_set;
+
+    }
 }
 

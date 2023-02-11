@@ -54,6 +54,8 @@ private slots:
 
       void on_B_NSpeed_clicked();
 
+      void on_B_Color_clicked();
+
 private:
     Ui::MainWindow *ui;
     QList<QUrl> playlist; //存储媒体路径
@@ -63,7 +65,7 @@ private:
     QStringList MediaList;
     bool flag = true;
     bool Cloud = false;
+    bool style_set = false;
     QList<QUrl> playlist_cloud;
-
 };
 #endif // MAINWINDOW_H

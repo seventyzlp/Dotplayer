@@ -10,8 +10,20 @@
     <height>582</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>Microsoft YaHei UI</family>
+    <pointsize>9</pointsize>
+   </font>
+  </property>
+  <property name="cursor">
+   <cursorShape>ArrowCursor</cursorShape>
+  </property>
   <property name="windowTitle">
    <string>视频播放器:QTversion--powered by zlp2023</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="LB_current">
@@ -120,7 +132,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
@@ -447,6 +459,19 @@
     </property>
     <property name="text">
      <string>常速</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="B_Color">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>443</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>背景</string>
     </property>
    </widget>
   </widget>
