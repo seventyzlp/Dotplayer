@@ -95,6 +95,16 @@
      <attribute name="title">
       <string>浏览器</string>
      </attribute>
+     <widget class="QListWidget" name="L_CloudList">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>461</width>
+        <height>531</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -393,11 +403,50 @@
       <x>10</x>
       <y>10</y>
       <width>421</width>
-      <height>451</height>
+      <height>421</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="B_HighSpeed">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>443</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>快放</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="B_LowSpedd">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>443</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>慢放</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="B_NSpeed">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>443</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>常速</string>
     </property>
    </widget>
   </widget>

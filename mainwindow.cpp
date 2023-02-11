@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    setWindowTitle("Dotplayer 0.95");//窗口名称
+    setWindowTitle("Dotplayer 1.0");//窗口名称
 
     mediaplayer = new QMediaPlayer(this);
     audiooutput = new QAudioOutput(this);
@@ -85,11 +85,18 @@ void MainWindow::on_B_play_clicked()
     switch (mediaplayer->playbackState()) { //获取播放状态
     case QMediaPlayer::PlaybackState::StoppedState:
     { //没有播放，播放当前选中媒体
-        int row = ui->L_MediaList->currentRow();
-        mediaplayer->setSource(playlist[row]);
+        int row;
+        if(!Cloud){
+            row = ui->L_MediaList->currentRow();
+            mediaplayer->setSource(playlist[row]);
+        }
+        else{
+            //row = ui->L_CloudList->currentRow();
+            mediaplayer->setSource(playlist_cloud[0]);
+        }
+
         mediaplayer->play();
 
-        //ui->B_play->text(); 这里加一个切换
         break;
     }
     case QMediaPlayer::PlaybackState::PausedState:
@@ -134,8 +141,6 @@ void MainWindow::on_B_stop_clicked()
 }
 
 
-
-
 void MainWindow::on_pushButton_5_clicked()//添加文件到播放列表，现在支持多文件选择添加了
 {
     auto add_FilePath = QFileDialog::getOpenFileNames(this,"选择要添加到播放列表的文件","D:\\CloudMusic","allfiles(*.*)"); //直接获取全部路径了
@@ -146,7 +151,6 @@ void MainWindow::on_pushButton_5_clicked()//添加文件到播放列表，现在
 
     playlist.append(QUrl::fromLocalFile(add_FilePath[i]));
     MediaList.append(add_FileName); //MediaList 是放文件名的 playlist 是放文件路径的
-    qInfo()<<MediaList;
     }
     ui->L_MediaList->addItems(MediaList);
 }
@@ -309,5 +313,44 @@ void MainWindow::on_pushButton_12_clicked() //对播放列表内容按照码值�
     }
     ui->L_MediaList->clear();
     ui->L_MediaList->addItems(MediaList);
+}
+
+
+void MainWindow::on_tabWidget_tabBarClicked(int index)// 点击到浏览器界面 获取云端的播放列表
+{
+    if(index == 0){ //判断点击浏览器
+        MediaList.clear();
+        ui->L_CloudList->clear();
+        playlist_cloud.append(QUrl("http://thecircus.top/wp-content/uploads/2022/11/JMJM.mp3"));
+        MediaList.append("JMJM.mp3");
+
+        ui->L_CloudList->addItems(MediaList);
+        MediaList.clear();
+        Cloud = true;
+        qInfo()<<"进入互联网模式";
+        qInfo()<<playlist_cloud;
+    }
+    else{
+        Cloud = false;
+        playlist_cloud.clear();
+    }
+}
+
+
+void MainWindow::on_B_HighSpeed_clicked() //设置二倍速播放
+{
+    mediaplayer->setPlaybackRate(2);
+}
+
+
+void MainWindow::on_B_LowSpedd_clicked()  //设置半速播放
+{
+    mediaplayer->setPlaybackRate(0.5);
+}
+
+
+void MainWindow::on_B_NSpeed_clicked()  //设置常速播放
+{
+    mediaplayer->setPlaybackRate(1);
 }
 

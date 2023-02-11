@@ -46,6 +46,14 @@ private slots:
 
       void on_pushButton_12_clicked();
 
+      void on_tabWidget_tabBarClicked(int index);
+
+      void on_B_HighSpeed_clicked();
+
+      void on_B_LowSpedd_clicked();
+
+      void on_B_NSpeed_clicked();
+
 private:
     Ui::MainWindow *ui;
     QList<QUrl> playlist; //存储媒体路径
@@ -54,6 +62,8 @@ private:
     QVideoWidget* videowidget;
     QStringList MediaList;
     bool flag = true;
+    bool Cloud = false;
+    QList<QUrl> playlist_cloud;
 
 };
 #endif // MAINWINDOW_H
