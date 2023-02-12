@@ -78,7 +78,8 @@ void MainWindow::on_B_AddFile_clicked() //添加播放列表按键
 
 void MainWindow::on_B_play_clicked()
 {
-    if(playlist.empty()){
+
+    if(playlist.empty() && !Cloud){
         return; //没有添加播放内容的时候是放不了的
     }
     switch (mediaplayer->playbackState()) { //获取播放状态
@@ -86,11 +87,13 @@ void MainWindow::on_B_play_clicked()
     { //没有播放，播放当前选中媒体
         int row;
         if(!Cloud){
+
             row = ui->L_MediaList->currentRow();
             mediaplayer->setSource(playlist[row]);
         }
         else{
             //row = ui->L_CloudList->currentRow();
+            qInfo()<<"正在缓冲播放媒体";
             mediaplayer->setSource(playlist_cloud[0]);
         }
 
@@ -163,7 +166,7 @@ void MainWindow::on_pushButton_11_clicked() // 删除播放列表中的选项
 void MainWindow::on_tabWidget_2_tabBarClicked(int index) //选中这个框框之后读取电脑音乐文件夹中的东西
 {
     if(index == 1){ //选中了此电脑界面
-        QString user_path = "D:\\CloudMusic";
+        QString user_path = "C:/Users";
         QDir dir(user_path);//这边的播放还要修改前面的东西，因为
         QStringList User_Medialist = dir.entryList(QStringList()<<"*.mp3"<<"*.wav"<<"*.flac"<<"*.mkv"<<"*.mp4"); //设置过滤选项
 
